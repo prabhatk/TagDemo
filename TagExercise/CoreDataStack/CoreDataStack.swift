@@ -33,16 +33,18 @@ public class CoreDataStack : NSObject {
         return container
     }()
     
-    lazy var viewContext : NSManagedObjectContext = {
+    lazy var moc : NSManagedObjectContext = {
+        print("\n### \(self.persistentContainer.viewContext)")
         return self.persistentContainer.viewContext
     }()
     
     // MARK: - Core Data Saving support
     
     func saveContext () {
-        let context = persistentContainer.viewContext
+        let context = moc
         if context.hasChanges {
             do {
+                print("item to be insert\n \(context.insertedObjects) and contextAddress \(context)")
                 try context.save()
             } catch {
                 let nserror = error as NSError

@@ -18,23 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter tag name, will accept alphanumeric values only" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3i-or-Pfb">
-                                <rect key="frame" x="16" y="109" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rGy-fC-xPP"/>
-                                </connections>
-                            </textField>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please enter alphanumeric values only no special character please." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8z-CP-rbO">
-                                <rect key="frame" x="16" y="72" width="343" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter alphanumeric values only no special character please." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8z-CP-rbO">
+                                <rect key="frame" x="16" y="72" width="343" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ERo-yw-hxw">
+                                <rect key="frame" x="16" y="100" width="343" height="80"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Uvt-Tj-ltV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="VHO-EC-Irr"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can enter multiple Tags with comma seperation." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5h-0W-ah6">
+                                <rect key="frame" x="16" y="196" width="343" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB7-mu-a9F">
-                                <rect key="frame" x="171" y="147" width="32" height="30"/>
+                                <rect key="frame" x="171" y="217" width="32" height="30"/>
                                 <state key="normal" title="ADD"/>
                                 <connections>
                                     <action selector="addButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VpM-Ka-M2U"/>
@@ -43,12 +52,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ERo-yw-hxw" firstAttribute="trailing" secondItem="I8z-CP-rbO" secondAttribute="trailing" id="3ar-oJ-mYY"/>
                             <constraint firstItem="OB7-mu-a9F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3b6-eo-Ous"/>
-                            <constraint firstItem="E3i-or-Pfb" firstAttribute="trailing" secondItem="I8z-CP-rbO" secondAttribute="trailing" id="8uE-H9-yTa"/>
-                            <constraint firstItem="E3i-or-Pfb" firstAttribute="top" secondItem="I8z-CP-rbO" secondAttribute="bottom" constant="8" id="Q9I-wW-i0N"/>
-                            <constraint firstItem="OB7-mu-a9F" firstAttribute="top" secondItem="E3i-or-Pfb" secondAttribute="bottom" constant="8" id="TQI-tT-orJ"/>
+                            <constraint firstItem="i5h-0W-ah6" firstAttribute="top" secondItem="ERo-yw-hxw" secondAttribute="bottom" constant="16" id="7FC-CE-K0k"/>
+                            <constraint firstItem="i5h-0W-ah6" firstAttribute="leading" secondItem="ERo-yw-hxw" secondAttribute="leading" id="Ugy-ye-Lur"/>
+                            <constraint firstItem="i5h-0W-ah6" firstAttribute="trailing" secondItem="ERo-yw-hxw" secondAttribute="trailing" id="VSg-ZJ-zha"/>
+                            <constraint firstItem="OB7-mu-a9F" firstAttribute="top" secondItem="i5h-0W-ah6" secondAttribute="bottom" constant="9" id="Vvr-nK-8XG"/>
                             <constraint firstItem="I8z-CP-rbO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="XrF-lN-jb6"/>
-                            <constraint firstItem="E3i-or-Pfb" firstAttribute="leading" secondItem="I8z-CP-rbO" secondAttribute="leading" id="gCn-Z6-dxz"/>
+                            <constraint firstItem="ERo-yw-hxw" firstAttribute="top" secondItem="I8z-CP-rbO" secondAttribute="bottom" constant="16" id="oqI-F3-aVX"/>
+                            <constraint firstItem="ERo-yw-hxw" firstAttribute="leading" secondItem="I8z-CP-rbO" secondAttribute="leading" id="rcg-yT-g0P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="I8z-CP-rbO" secondAttribute="trailing" constant="16" id="s0f-f9-ZOE"/>
                             <constraint firstItem="I8z-CP-rbO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sFD-Jd-tcX"/>
                         </constraints>
@@ -63,7 +75,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="errorLabel" destination="I8z-CP-rbO" id="C4F-CI-xy1"/>
-                        <outlet property="tagTextField" destination="E3i-or-Pfb" id="10h-PR-MTX"/>
+                        <outlet property="tagTextView" destination="ERo-yw-hxw" id="1n9-rF-n8W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

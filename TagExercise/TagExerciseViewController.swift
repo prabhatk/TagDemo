@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import  CoreData
 
 class TagExerciseViewController: UIViewController {
     @IBOutlet weak var errorLabel : UILabel!
-    @IBOutlet weak var tagTextField : UITextField!
+    @IBOutlet weak var tagTextView : UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,19 +24,25 @@ class TagExerciseViewController: UIViewController {
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
-        if self.saveTag(tagValue: self.tagTextField.text!) == false {
-            // show alert
+        let trimmedString = self.tagTextView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let seperatedStringArray = (trimmedString.split(separator: ",")).map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
+        var isAllValidTags = true
+        for tag in seperatedStringArray {
+            if tag.isAlphaNumeric() == false {
+                isAllValidTags = false
+                break
+            }
         }
-    }
-    
-}
-
-extension TagExerciseViewController : UITextFieldDelegate {
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if self.saveTag(tagValue: self.tagTextField.text!) == false {
-            // show alert
+        if isAllValidTags == false {
+            self.errorLabel.isHidden = false
         }
-        return true
+        else {
+            _ = seperatedStringArray.map{
+                _ = saveTag(tagValue: $0)
+            }
+        }
+        print("\(seperatedStringArray)")
+        
     }
     
     func saveTag(tagValue : String) -> Bool {
@@ -44,11 +51,39 @@ extension TagExerciseViewController : UITextFieldDelegate {
         if tagValue.isAlphaNumeric() {
             self.errorLabel.isHidden = true
             // save this to database
+            insertNewObject(tagValue)
             saveResult = true
         }
         else {
             self.errorLabel.isHidden = false
         }
         return saveResult
+    }
+    
+    func insertNewObject(_ tagValue: String) {
+        let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
+        let tag = Tags(context: context)
+        tag.tagName = tagValue
+        // Save the context.
+        if context.hasChanges {
+            do {
+                print("item to be insert\n \(context.insertedObjects) and contextAddress \(context)")
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
+}
+
+extension TagExerciseViewController : UITextViewDelegate {
+    
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if self.saveTag(tagValue: self.tagTextView.text!) == false {
+            // show alert
+        }
+        return true
     }
 }
