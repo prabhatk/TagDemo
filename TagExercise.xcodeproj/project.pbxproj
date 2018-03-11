@@ -18,6 +18,7 @@
 		938A1C4D20542C8500A7C1A4 /* TagExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */; };
 		938A1C4F20542D6300A7C1A4 /* TagStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */; };
 		938A1C51205431B300A7C1A4 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C50205431B300A7C1A4 /* Utility.swift */; };
+		93D14CFC2055162F007B2F80 /* CoreDataFetchSupportLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D14CFB2055162F007B2F80 /* CoreDataFetchSupportLib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagExerciseViewController.swift; sourceTree = "<group>"; };
 		938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagStatsViewController.swift; sourceTree = "<group>"; };
 		938A1C50205431B300A7C1A4 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		93D14CFB2055162F007B2F80 /* CoreDataFetchSupportLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchSupportLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				938A1C4A205423A900A7C1A4 /* CoreDataStack.swift */,
+				93D14CFB2055162F007B2F80 /* CoreDataFetchSupportLib.swift */,
 			);
 			path = CoreDataStack;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				938A1C4D20542C8500A7C1A4 /* TagExerciseViewController.swift in Sources */,
+				93D14CFC2055162F007B2F80 /* CoreDataFetchSupportLib.swift in Sources */,
 				938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */,
 				938A1C51205431B300A7C1A4 /* Utility.swift in Sources */,
 				938A1C212054237500A7C1A4 /* TagExercise.xcdatamodeld in Sources */,

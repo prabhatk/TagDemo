@@ -90,10 +90,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4st-gQ-H8q">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="4st-gQ-H8q">
                                 <rect key="frame" x="20" y="72" width="335" height="29"/>
                                 <segments>
-                                    <segment title="A-Z⥮"/>
+                                    <segment title="Z-A⥮"/>
                                     <segment title="Frequency"/>
                                     <segment title="All"/>
                                 </segments>
