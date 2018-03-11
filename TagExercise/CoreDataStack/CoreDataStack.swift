@@ -34,7 +34,6 @@ public class CoreDataStack : NSObject {
     }()
     
     lazy var moc : NSManagedObjectContext = {
-        print("\n### \(self.persistentContainer.viewContext)")
         return self.persistentContainer.viewContext
     }()
     
@@ -42,6 +41,7 @@ public class CoreDataStack : NSObject {
     
     func saveContext () {
         let context = moc
+        print("\n### \(moc)")
         if context.hasChanges {
             do {
                 print("item to be insert\n \(context.insertedObjects) and contextAddress \(context)")

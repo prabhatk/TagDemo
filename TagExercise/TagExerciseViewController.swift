@@ -15,7 +15,6 @@ class TagExerciseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        CoreDataStack.shared.printModelName()
     }
     
     override func didReceiveMemoryWarning() {
@@ -24,40 +23,49 @@ class TagExerciseViewController: UIViewController {
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
+        // check for white spaces and new line characters
         let trimmedString = self.tagTextView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        // trimming each elements of the tag array
         let seperatedStringArray = (trimmedString.split(separator: ",")).map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
+        // flag to check if all valid string in set oterwise will not perfrom database operation
         var isAllValidTags = true
+        // checking
         for tag in seperatedStringArray {
             if tag.isAlphaNumeric() == false {
                 isAllValidTags = false
                 break
             }
         }
+        // if falg is false there than error will be shown
         if isAllValidTags == false {
             self.errorLabel.isHidden = false
-        }
+        }//if every thing is correct we will do database oepration.
         else {
             _ = seperatedStringArray.map{
                 _ = saveTag(tagValue: $0)
             }
+            self.errorLabel.isHidden = true
         }
         print("\(seperatedStringArray)")
         
     }
     
-    func saveTag(tagValue : String) -> Bool {
-        // apply check for alpha numeric values
-        var saveResult = false
-        if tagValue.isAlphaNumeric() {
-            self.errorLabel.isHidden = true
-            // save this to database
-            insertNewObject(tagValue)
-            saveResult = true
-        }
-        else {
-            self.errorLabel.isHidden = false
-        }
-        return saveResult
+    func saveTag(tagValue : String)  {
+        
+//        // apply check for alpha numeric values
+//        var saveResult = false
+//        // check for alpha numeric values
+//        if tagValue.isAlphaNumeric() {
+//            self.errorLabel.isHidden = true
+//            // save this to database
+//            insertNewObject(tagValue)
+//            saveResult = true
+//        }
+//        else {
+//            self.errorLabel.isHidden = false
+//        }
+//        return saveResult
+        insertNewObject(tagValue)
     }
     
     func insertNewObject(_ tagValue: String) {
@@ -69,6 +77,7 @@ class TagExerciseViewController: UIViewController {
             do {
                 print("item to be insert\n \(context.insertedObjects) and contextAddress \(context)")
                 try context.save()
+                CoreDataStack.shared.saveContext()
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -77,13 +86,3 @@ class TagExerciseViewController: UIViewController {
     }
 }
 
-extension TagExerciseViewController : UITextViewDelegate {
-    
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if self.saveTag(tagValue: self.tagTextView.text!) == false {
-            // show alert
-        }
-        return true
-    }
-}
