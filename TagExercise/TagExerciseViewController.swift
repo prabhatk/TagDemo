@@ -45,26 +45,25 @@ class TagExerciseViewController: UIViewController {
                 _ = saveTag(tagValue: $0)
             }
             self.errorLabel.isHidden = true
+            self.tagTextView.text = ""
         }
         print("\(seperatedStringArray)")
-        
+        //printFetchDataFromMOC(moc: CoreDataStack.shared.moc)
     }
-    
+//    func printFetchDataFromMOC(moc : NSManagedObjectContext) {
+//        let fetchRequest = NSFetchRequest<Tags>(entityName: "Tags")
+//        let sortDescriptor = NSSortDescriptor(key: "tagName", ascending: false)
+//
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+//        do {
+//            let result : [Tags] = try CoreDataStack.shared.moc.fetch(fetchRequest) as! [Tags]
+//            print("\(result)")
+//            result.map{print("\($0.tagName)")}
+//        } catch let error as NSError {
+//            print("Could not fetch \(error), \(error.userInfo)")
+//        }
+//    }
     func saveTag(tagValue : String)  {
-        
-//        // apply check for alpha numeric values
-//        var saveResult = false
-//        // check for alpha numeric values
-//        if tagValue.isAlphaNumeric() {
-//            self.errorLabel.isHidden = true
-//            // save this to database
-//            insertNewObject(tagValue)
-//            saveResult = true
-//        }
-//        else {
-//            self.errorLabel.isHidden = false
-//        }
-//        return saveResult
         insertNewObject(tagValue)
     }
     
@@ -72,6 +71,7 @@ class TagExerciseViewController: UIViewController {
         let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
         let tag = Tags(context: context)
         tag.tagName = tagValue
+        tag.timestamp = Date()
         // Save the context.
         if context.hasChanges {
             do {

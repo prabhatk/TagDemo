@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class TagStatsViewController: UIViewController {
+    
     @IBOutlet weak var filterSegmentView : UISegmentedControl!
     @IBOutlet weak var tableView : UITableView!
 
@@ -18,7 +19,6 @@ class TagStatsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.register(UITableViewCell.classForKeyedUnarchiver(), forCellReuseIdentifier: "Cell")
-        CoreDataStack.shared.printModelName()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,19 +44,19 @@ class TagStatsViewController: UIViewController {
             return _fetchedResultsController!
         }
         
-        let fetchRequest: NSFetchRequest<Tags> = Tags.fetchRequest()
+        let fetchRequest: NSFetchRequest<Tags> = NSFetchRequest<Tags>(entityName: "Tags")
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "tagName", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.moc, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.moc, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
@@ -72,10 +72,8 @@ class TagStatsViewController: UIViewController {
         return _fetchedResultsController!
     }
     var _fetchedResultsController: NSFetchedResultsController<Tags>? = nil
-    
-    
-    
 }
+
 extension TagStatsViewController : NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()

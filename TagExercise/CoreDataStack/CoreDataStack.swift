@@ -18,13 +18,10 @@ public class CoreDataStack : NSObject {
     private init(modelName : String) {
         self.modelName = modelName
     }
-    func printModelName() {
-        print ("model name is \(self.modelName)")
-    }
     
     lazy var persistentContainer: NSPersistentContainer = {
        
-        let container = NSPersistentContainer(name: self.modelName)//"TagExercise"
+        let container = NSPersistentContainer(name: self.modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
