@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import TagDataLibrary
 
 class TagStatsViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
@@ -18,26 +19,32 @@ class TagStatsViewController: UIViewController, NSFetchedResultsControllerDelega
     var spinnerButton : UIBarButtonItem?
     var spinner : UIActivityIndicatorView?
     
-    var fetchedResultsController : NSFetchedResultsController<Tags> = CoreDataFetchSupportLib.getFetchResultController(moc: CoreDataStack.shared.moc, predicate: nil, entityName: "Tags", sortingAttribute: "timestamp", isascending: false, delegate: self as? NSFetchedResultsControllerDelegate)
+    var tagDataModel:[TagData]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.tableView.register(UITableViewCell.classForKeyedUnarchiver(), forCellReuseIdentifier: "Cell")
         
-        // MARK: - Fetched results controller
-        do {
-            try self.fetchedResultsController.performFetch()
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
         
-        self.addButton = UIBarButtonItem(title: "x1000", style: .plain, target: self, action: #selector(makeMultipleRecords))
+        /*self.addButton = UIBarButtonItem(title: "x1000", style: .plain, target: self, action: #selector(makeMultipleRecords))*/
         navigationItem.rightBarButtonItem = addButton
         
         self.spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         self.spinnerButton = UIBarButtonItem(customView: self.spinner!)
+        
+        let manager = TagDataManager.sharedInstance
+        
+        manager.fetchAllTagRecord(ascending: true) { (result: Result<[TagData]>) in
+            switch result {
+            case .success(let resultSet):
+                let itemCount = resultSet.count
+                self.tagDataModel = resultSet
+            case .failure(let error):
+                print("\(error)")
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,8 +57,7 @@ class TagStatsViewController: UIViewController, NSFetchedResultsControllerDelega
         
         switch sender.selectedSegmentIndex {
         case 0 :
-            let fcr = CoreDataFetchSupportLib.changeSortDescriptor(fcr: self.fetchedResultsController, predicate: nil, sortingAttribute: "tagName", isascending: isAscendingSort, delegate: nil)
-            self.fetchedResultsController = fcr
+           
             isAscendingSort = !isAscendingSort
             if isAscendingSort == true {
                 sender.setTitle("A-Z⥮", forSegmentAt: 0)
@@ -64,13 +70,13 @@ class TagStatsViewController: UIViewController, NSFetchedResultsControllerDelega
         case 1:
             break
         case 2:
-            let fcr = CoreDataFetchSupportLib.changeSortDescriptor(fcr: self.fetchedResultsController, predicate: nil, sortingAttribute: "timestamp", isascending: false, delegate: nil)
-            self.fetchedResultsController = fcr
+            /*let fcr = CoreDataFetchSupportLib.changeSortDescriptor(fcr: self.fetchedResultsController, predicate: nil, sortingAttribute: "timestamp", isascending: false, delegate: nil)
+            self.fetchedResultsController = fcr*/
             break
         default:
             break
         }
-        sender.selectedSegmentIndex = -1
+        /*sender.selectedSegmentIndex = -1
         do {
             self.fetchedResultsController.delegate = self
             try self.fetchedResultsController.performFetch()
@@ -80,48 +86,16 @@ class TagStatsViewController: UIViewController, NSFetchedResultsControllerDelega
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
+        }*/
         
     }
     
-    @objc
-    func makeMultipleRecords() {
-        self.navigationItem.rightBarButtonItem = spinnerButton
-        self.spinner?.startAnimating()
-        CoreDataStack.shared.persistentContainer.performBackgroundTask { (backgroundMOC) in
-            for tag in self.fetchedResultsController.fetchedObjects! {
-                for _ in 1 ... 1000 {
-                    let newTag = Tags(context: backgroundMOC)
-                    newTag.tagName = tag.tagName
-                    newTag.timestamp = Date()
-                }
-            }
-            do {
-                try backgroundMOC.save()
-                OperationQueue.main.addOperation {
-                    do {
-                        try self.fetchedResultsController.performFetch()
-                    } catch {
-                        let nserror = error as NSError
-                        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-                    }
-                    self.tableView.reloadData()
-                    self.spinner?.stopAnimating()
-                    self.navigationItem.rightBarButtonItem = self.addButton
-                }
-            }
-            catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
+   
     // MARK: - Fetched results controller
     
-    func configureCell(_ cell: UITableViewCell, withTag tag: Tags) {
+    /*func configureCell(_ cell: UITableViewCell, withTag tag: Tags) {
         cell.textLabel!.text = tag.tagName
-    }
+    }*/
     
     
     /*var fetchedResultsController: NSFetchedResultsController<Tags> {
@@ -158,7 +132,7 @@ class TagStatsViewController: UIViewController, NSFetchedResultsControllerDelega
     }*/
     //var _fetchedResultsController: NSFetchedResultsController<Tags>? = nil
 }
-
+/*
 extension TagStatsViewController  {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
@@ -193,7 +167,9 @@ extension TagStatsViewController  {
         tableView.endUpdates()
     }
     
-}
+}*/
+
+/*
 extension TagStatsViewController : UITableViewDataSource {
     // MARK: - Table View
     
@@ -232,4 +208,4 @@ extension TagStatsViewController : UITableViewDataSource {
         }
     }
 
-}
+}*/

@@ -205,7 +205,7 @@ public class TagDataManager: NSObject {
                         // Create new tag Data
                         let newTagData = TagData(context: context)
                         newTagData.name = tagMetaData.name
-                        tagMetaData.mutableSetValue(forKey: "tagData").add(newTagData)
+                        tagMetaData.mutableSetValue(forKey: "tagDataRelationship").add(newTagData)
                     }
                     // Update tagMetaData counter for that record
                     tagMetaData.count += count

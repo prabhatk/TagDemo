@@ -31,6 +31,7 @@ public class CoreDataFetchSupportLib : NSObject {
         
         return fetchResultController
     }
+    
     static func changeSortDescriptor<T>( fcr : NSFetchedResultsController<T>, predicate : NSPredicate?, sortingAttribute : String , isascending : Bool, delegate : NSFetchedResultsControllerDelegate?) -> NSFetchedResultsController<T> {
         
         let sortDescriptor = NSSortDescriptor(key: sortingAttribute, ascending: isascending)

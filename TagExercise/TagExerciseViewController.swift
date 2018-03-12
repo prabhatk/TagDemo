@@ -8,10 +8,15 @@
 
 import UIKit
 import  CoreData
+import TagDataLibrary
+
 
 class TagExerciseViewController: UIViewController {
     @IBOutlet weak var errorLabel : UILabel!
     @IBOutlet weak var tagTextView : UITextView!
+    
+    var tagDataModel:[TagData]? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,53 +41,52 @@ class TagExerciseViewController: UIViewController {
                 break
             }
         }
+       
         // if falg is false there than error will be shown
         if isAllValidTags == false {
             self.errorLabel.isHidden = false
-        }//if every thing is correct we will do database oepration.
-        else {
-            _ = seperatedStringArray.map{
-                _ = saveTag(tagValue: $0)
-            }
-            self.errorLabel.isHidden = true
-            self.tagTextView.text = ""
         }
+        
         print("\(seperatedStringArray)")
         //printFetchDataFromMOC(moc: CoreDataStack.shared.moc)
-    }
-//    func printFetchDataFromMOC(moc : NSManagedObjectContext) {
-//        let fetchRequest = NSFetchRequest<Tags>(entityName: "Tags")
-//        let sortDescriptor = NSSortDescriptor(key: "tagName", ascending: false)
-//
-//        fetchRequest.sortDescriptors = [sortDescriptor]
-//        do {
-//            let result : [Tags] = try CoreDataStack.shared.moc.fetch(fetchRequest) as! [Tags]
-//            print("\(result)")
-//            result.map{print("\($0.tagName)")}
-//        } catch let error as NSError {
-//            print("Could not fetch \(error), \(error.userInfo)")
-//        }
-//    }
-    func saveTag(tagValue : String)  {
-        insertNewObject(tagValue)
-    }
-    
-    func insertNewObject(_ tagValue: String) {
-        let context = CoreDataStack.shared.persistentContainer.newBackgroundContext()
-        let tag = Tags(context: context)
-        tag.tagName = tagValue
-        tag.timestamp = Date()
-        // Save the context.
-        if context.hasChanges {
-            do {
-                print("item to be insert\n \(context.insertedObjects) and contextAddress \(context)")
-                try context.save()
-                CoreDataStack.shared.saveContext()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        
+        let manager = TagDataManager.sharedInstance
+        
+        /*manager.insertRecord(tagInputArray: ["hello", "hi"],  completion: { (result: Result<Any>) in
+            switch result {
+            case .success( _):
+                NSLog("success")
+            case .failure(let error):
+                NSLog("\(error)")
+            }
+        })*/
+        
+        NSLog("Fetch Data")
+        manager.fetchAllTagRecord(ascending: true) { (result: Result<[TagData]>) in
+            switch result {
+            case .success(let resultSet):
+                let itemCount = resultSet.count
+                //NSLog("success %@", itemCount)
+                NSLog("Success")
+                self.tagDataModel = resultSet
+            case .failure(let error):
+                print("\(error)")
             }
         }
+        
+        
+        /*manager.createDuplicateRecord(count: 100000, completion: { (result: Result<Any>) in
+            switch result {
+            case .success:
+                NSLog("Success Insert")
+            case .failure(let error):
+                print("\(error)")
+            }
+        })*/
+        
+        
+            
+        
     }
 }
 

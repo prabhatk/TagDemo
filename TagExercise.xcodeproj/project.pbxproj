@@ -15,18 +15,16 @@
 		288186E42056B80000EE376C /* TagCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E32056B80000EE376C /* TagCoreDataStack.swift */; };
 		288186E62056CED000EE376C /* TagDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E52056CED000EE376C /* TagDataManager.swift */; };
 		288186E92056CEE800EE376C /* TagDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */; };
+		288187062057110200EE376C /* TagDataModel.xcdatamodeld in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */; };
 		938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C182054237500A7C1A4 /* AppDelegate.swift */; };
 		938A1C1E2054237500A7C1A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C1C2054237500A7C1A4 /* Main.storyboard */; };
-		938A1C212054237500A7C1A4 /* TagExercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C1F2054237500A7C1A4 /* TagExercise.xcdatamodeld */; };
 		938A1C232054237500A7C1A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C222054237500A7C1A4 /* Assets.xcassets */; };
 		938A1C262054237500A7C1A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C242054237500A7C1A4 /* LaunchScreen.storyboard */; };
 		938A1C312054237500A7C1A4 /* TagExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C302054237500A7C1A4 /* TagExerciseTests.swift */; };
 		938A1C3C2054237500A7C1A4 /* TagExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C3B2054237500A7C1A4 /* TagExerciseUITests.swift */; };
-		938A1C4B205423AA00A7C1A4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C4A205423A900A7C1A4 /* CoreDataStack.swift */; };
 		938A1C4D20542C8500A7C1A4 /* TagExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */; };
 		938A1C4F20542D6300A7C1A4 /* TagStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */; };
 		938A1C51205431B300A7C1A4 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C50205431B300A7C1A4 /* Utility.swift */; };
-		93D14CFC2055162F007B2F80 /* CoreDataFetchSupportLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D14CFB2055162F007B2F80 /* CoreDataFetchSupportLib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +73,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				288186DB2056B7BC00EE376C /* TagDataLibrary.framework in Embed Frameworks */,
+				288187062057110200EE376C /* TagDataModel.xcdatamodeld in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,7 +93,6 @@
 		938A1C152054237500A7C1A4 /* TagExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		938A1C182054237500A7C1A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		938A1C1D2054237500A7C1A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		938A1C202054237500A7C1A4 /* TagExercise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TagExercise.xcdatamodel; sourceTree = "<group>"; };
 		938A1C222054237500A7C1A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		938A1C252054237500A7C1A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		938A1C272054237500A7C1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,11 +102,9 @@
 		938A1C372054237500A7C1A4 /* TagExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagExerciseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		938A1C3B2054237500A7C1A4 /* TagExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagExerciseUITests.swift; sourceTree = "<group>"; };
 		938A1C3D2054237500A7C1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		938A1C4A205423A900A7C1A4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagExerciseViewController.swift; sourceTree = "<group>"; };
 		938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagStatsViewController.swift; sourceTree = "<group>"; };
 		938A1C50205431B300A7C1A4 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		93D14CFB2055162F007B2F80 /* CoreDataFetchSupportLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchSupportLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +204,6 @@
 				938A1C222054237500A7C1A4 /* Assets.xcassets */,
 				938A1C242054237500A7C1A4 /* LaunchScreen.storyboard */,
 				938A1C272054237500A7C1A4 /* Info.plist */,
-				938A1C1F2054237500A7C1A4 /* TagExercise.xcdatamodeld */,
 				938A1C50205431B300A7C1A4 /* Utility.swift */,
 			);
 			path = TagExercise;
@@ -235,8 +230,6 @@
 		938A1C492054239700A7C1A4 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
-				938A1C4A205423A900A7C1A4 /* CoreDataStack.swift */,
-				93D14CFB2055162F007B2F80 /* CoreDataFetchSupportLib.swift */,
 			);
 			path = CoreDataStack;
 			sourceTree = "<group>";
@@ -470,12 +463,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				938A1C4D20542C8500A7C1A4 /* TagExerciseViewController.swift in Sources */,
-				93D14CFC2055162F007B2F80 /* CoreDataFetchSupportLib.swift in Sources */,
 				938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */,
 				938A1C51205431B300A7C1A4 /* Utility.swift in Sources */,
-				938A1C212054237500A7C1A4 /* TagExercise.xcdatamodeld in Sources */,
 				938A1C4F20542D6300A7C1A4 /* TagStatsViewController.swift in Sources */,
-				938A1C4B205423AA00A7C1A4 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,16 +880,6 @@
 			);
 			currentVersion = 288186E82056CEE800EE376C /* TagDataModel.xcdatamodel */;
 			path = TagDataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		938A1C1F2054237500A7C1A4 /* TagExercise.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				938A1C202054237500A7C1A4 /* TagExercise.xcdatamodel */,
-			);
-			currentVersion = 938A1C202054237500A7C1A4 /* TagExercise.xcdatamodel */;
-			path = TagExercise.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
