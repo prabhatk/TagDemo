@@ -93,9 +93,8 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="4st-gQ-H8q">
                                 <rect key="frame" x="20" y="72" width="335" height="29"/>
                                 <segments>
-                                    <segment title="Z-A⥮"/>
+                                    <segment title="A - Z⥮"/>
                                     <segment title="Frequency"/>
-                                    <segment title="All"/>
                                 </segments>
                                 <connections>
                                     <action selector="filterSegmentChangeAction:" destination="8vQ-Mu-QRT" eventType="valueChanged" id="TKg-yT-zDR"/>

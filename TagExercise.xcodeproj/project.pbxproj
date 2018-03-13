@@ -15,7 +15,6 @@
 		288186E42056B80000EE376C /* TagCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E32056B80000EE376C /* TagCoreDataStack.swift */; };
 		288186E62056CED000EE376C /* TagDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E52056CED000EE376C /* TagDataManager.swift */; };
 		288186E92056CEE800EE376C /* TagDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */; };
-		288187062057110200EE376C /* TagDataModel.xcdatamodeld in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */; };
 		938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C182054237500A7C1A4 /* AppDelegate.swift */; };
 		938A1C1E2054237500A7C1A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C1C2054237500A7C1A4 /* Main.storyboard */; };
 		938A1C232054237500A7C1A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C222054237500A7C1A4 /* Assets.xcassets */; };
@@ -73,7 +72,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				288186DB2056B7BC00EE376C /* TagDataLibrary.framework in Embed Frameworks */,
-				288187062057110200EE376C /* TagDataModel.xcdatamodeld in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

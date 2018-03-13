@@ -46,47 +46,18 @@ class TagExerciseViewController: UIViewController {
         if isAllValidTags == false {
             self.errorLabel.isHidden = false
         }
-        
         print("\(seperatedStringArray)")
-        //printFetchDataFromMOC(moc: CoreDataStack.shared.moc)
+        
         
         let manager = TagDataManager.sharedInstance
-        
-        /*manager.insertRecord(tagInputArray: ["hello", "hi"],  completion: { (result: Result<Any>) in
+        manager.insertRecord(tagInputArray: seperatedStringArray,  completion: { (result: Result<Any>) in
             switch result {
             case .success( _):
                 NSLog("success")
             case .failure(let error):
                 NSLog("\(error)")
             }
-        })*/
-        
-        NSLog("Fetch Data")
-        manager.fetchAllTagRecord(ascending: true) { (result: Result<[TagData]>) in
-            switch result {
-            case .success(let resultSet):
-                let itemCount = resultSet.count
-                //NSLog("success %@", itemCount)
-                NSLog("Success")
-                self.tagDataModel = resultSet
-            case .failure(let error):
-                print("\(error)")
-            }
-        }
-        
-        
-        /*manager.createDuplicateRecord(count: 100000, completion: { (result: Result<Any>) in
-            switch result {
-            case .success:
-                NSLog("Success Insert")
-            case .failure(let error):
-                print("\(error)")
-            }
-        })*/
-        
-        
-            
-        
+        })
     }
 }
 

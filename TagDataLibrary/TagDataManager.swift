@@ -14,7 +14,27 @@ public enum Result<T>{
     case failure(Error)
 }
 
+extension Notification.Name {
+    static let tagDataLibraryUpdateNotification = Notification.Name("TagDataLibraryUpdateNotification")
+}
+
+//NotificationCenter.default.post(name:NSNotification.Name(rawValue: "YourMojiManagerNotification"), object: nil)
+
 public class TagDataManager: NSObject {
+   
+    @objc public dynamic var totalrecordsFetched: Int = 0
+    
+    private var isDataReadyforRead = false {
+        willSet(incomingStatus){
+            print("About to set status to: \(incomingStatus)")
+        }
+        
+        didSet(previousStatus) {
+            if isDataReadyforRead == true {
+                NotificationCenter.default.post(name:NSNotification.Name(rawValue: "TagDataLibraryUpdateNotification"), object: nil)
+            }
+        }
+    }
     
     private let coreDataStack = TagCoreDataStack();
     
@@ -51,6 +71,13 @@ public class TagDataManager: NSObject {
         
         // Get the foreground task(MainQueue context)
         coreDataStack.performForegroundTask { context in
+            
+            // Create Progress
+            let progress = Progress(totalUnitCount: 1)
+
+            // Become Current
+            progress.becomeCurrent(withPendingUnitCount: 1)
+            
             do {
                 // Create a fetchrequest for TagData
                 let fetchRequest: NSFetchRequest<TagData> = TagData.fetchRequest()
@@ -64,12 +91,31 @@ public class TagDataManager: NSObject {
                 
                 //intialize the async fetrequest & return the completion block
                 let asynchronousFetchRequest = NSAsynchronousFetchRequest(fetchRequest:fetchRequest, completionBlock: { (results: NSAsynchronousFetchResult) in
+                    
+                    if let asynchronousFetchProgress = results.progress {
+                        // Remove Observer
+                        asynchronousFetchProgress.removeObserver(self, forKeyPath: "completedUnitCount")
+                        asynchronousFetchProgress.removeObserver(self, forKeyPath: "totalUnitCount")
+                    }
+                    
                     let items: [TagData] = results.finalResult!
                     completion(.success(items))
                 })
                 
                 // execute the fetch request
-                _ = try context.execute(asynchronousFetchRequest)
+                let asynchronousFetchResult = try context.execute(asynchronousFetchRequest) as! NSPersistentStoreAsynchronousResult
+                
+                // Add Observer
+                if let asynchronousFetchProgress = asynchronousFetchResult.progress {
+                    asynchronousFetchProgress.addObserver(self, forKeyPath: "completedUnitCount", options: NSKeyValueObservingOptions.new, context: nil)
+                    
+                    asynchronousFetchProgress.addObserver(self, forKeyPath: "totalUnitCount", options: NSKeyValueObservingOptions.new, context: nil)
+                }
+                
+                
+                // Resign Current
+                progress.resignCurrent()
+
             } catch {
                 // Report Error
                 completion(.failure(error))
@@ -165,6 +211,7 @@ public class TagDataManager: NSObject {
             do {
                 // Try saving contect
                 try context.save()
+                self.isDataReadyforRead = true
                 completion(.success("Success"))
             } catch {
                 //report error
@@ -188,9 +235,9 @@ public class TagDataManager: NSObject {
         coreDataStack.performBackgroundTask { context in
             
             // Create fetchRequest TagMetaData, To get list of existing tags
-            let fetchRequest: NSFetchRequest<TagMetaData> = TagMetaData.fetchRequest()
+            let fetchRequest: NSFetchRequest<TagData> = TagData.fetchRequest()
             
-            var result: [TagMetaData]?
+            var result: [TagData]?
             do {
                 // excute fetch
                 result = try context.fetch(fetchRequest)
@@ -200,21 +247,30 @@ public class TagDataManager: NSObject {
             
             if let result = result {
                 for i in 0 ..< result.count {
-                    let tagMetaData = result[i] as TagMetaData
+                    let tagMetaData = result[i] as TagData
                     for _ in 0 ..< count {
                         // Create new tag Data
                         let newTagData = TagData(context: context)
                         newTagData.name = tagMetaData.name
-                        tagMetaData.mutableSetValue(forKey: "tagDataRelationship").add(newTagData)
+                        
+                        // Fix Me:
+                        // Create the relationship
+                        //tagMetaData.mutableSetValue(forKey: "tagDataRelationship").add(newTagData)
                     }
+                    
+                    //Fix Me:
+                    // Update the counter
+                    
+                    
                     // Update tagMetaData counter for that record
-                    tagMetaData.count += count
+                    //tagMetaData.count += count
                 }
             }
             
             do {
-                // Try saving contect
+                // try saving contect
                 try context.save()
+                self.isDataReadyforRead = true
                 completion(.success("Success"))
             } catch {
                 completion(.failure(error))
@@ -222,6 +278,17 @@ public class TagDataManager: NSObject {
         }
     }
     
-    
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "completedUnitCount" {
+            if let recordFetched = change?[.newKey] {
+                self.totalrecordsFetched = recordFetched as! Int
+                print("Fetched \(recordFetched) Records")
+            }
+        } else if keyPath == "totalUnitCount" {
+            if let number = change?[.newKey] {
+                print("Total \(number) Records")
+            }
+        }
+    }
 }
 

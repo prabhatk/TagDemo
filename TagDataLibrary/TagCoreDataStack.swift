@@ -25,7 +25,21 @@ final class TagCoreDataStack: TagCoreDataStackProtocol {
     var errorHandler: (Error) -> Void = {_ in }
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "TagDataModel")
+        
+        // DataModel Name
+        let momdName = "TagDataModel" //pass this as a parameter
+        
+        //Url for the Model
+        guard let modelURL = Bundle(for: type(of: self)).url(forResource: momdName, withExtension:"momd") else {
+            fatalError("Error loading model from bundle")
+        }
+        
+        //load manged object model
+        guard let mom = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Error initializing mom from: \(modelURL)")
+        }
+        
+        let container  = NSPersistentContainer(name: momdName, managedObjectModel: mom)
         container.loadPersistentStores(completionHandler: { [weak self](storeDescription, error) in
             if let error = error {
                 NSLog("CoreData error \(error), \(String(describing: error._userInfo))")
