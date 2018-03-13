@@ -30,24 +30,29 @@ class TagExerciseViewController: UIViewController {
     @IBAction func addButtonAction(_ sender: Any) {
         // check for white spaces and new line characters
         let trimmedString = self.tagTextView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
         // trimming each elements of the tag array
         let seperatedStringArray = (trimmedString.split(separator: ",")).map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
+        
         // flag to check if all valid string in set oterwise will not perfrom database operation
-        var isAllValidTags = true
+        var isValidTags = true
+        
         // checking
         for tag in seperatedStringArray {
             if tag.isAlphaNumeric() == false {
-                isAllValidTags = false
+                isValidTags = false
                 break
             }
         }
        
         // if falg is false there than error will be shown
-        if isAllValidTags == false {
+        if isValidTags == false {
             self.errorLabel.isHidden = false
+            return;
         }
-        print("\(seperatedStringArray)")
         
+        
+        print("\(seperatedStringArray)")
         
         let manager = TagDataManager.sharedInstance
         manager.insertRecord(tagInputArray: seperatedStringArray,  completion: { (result: Result<Any>) in

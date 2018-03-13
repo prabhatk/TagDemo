@@ -26,6 +26,7 @@ class TagStatsViewController: UIViewController {
     
     deinit {
         // remember to remove it when this object is deallocated
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.TagContextObjectsDidChange, object: nil)
     }
     
     override func viewDidLoad() {
@@ -34,10 +35,7 @@ class TagStatsViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let manager = TagDataManager.sharedInstance
         
-        self.tableView.register(UITableViewCell.classForKeyedUnarchiver(), forCellReuseIdentifier: "Cell")
-        
-        
-        self.addButton = UIBarButtonItem(title: "x1000", style: .plain, target: self, action: #selector(createDuplicateRecords))
+       self.addButton = UIBarButtonItem(title: "x1000", style: .plain, target: self, action: #selector(createDuplicateRecords))
         navigationItem.rightBarButtonItem = addButton
        
         observer = manager.observe(\.totalrecordsFetched, options: [.new]) { [weak self] object, change in
@@ -47,6 +45,8 @@ class TagStatsViewController: UIViewController {
                 }
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadTableView), name: NSNotification.Name.TagContextObjectsDidChange, object: nil)
         
        self.refreshTableViewOrderBy(ascendingOrder: true)
     }
@@ -59,7 +59,7 @@ class TagStatsViewController: UIViewController {
     @objc
     func createDuplicateRecords() {
         let manager = TagDataManager.sharedInstance
-        manager.createDuplicateRecord(count: 10, completion: { (result: Result<Any>) in
+        manager.createDuplicateRecord(count: 1000, completion: { (result: Result<Any>) in
             switch result {
             case .success:
                 NSLog("Success Insert")
@@ -92,6 +92,19 @@ class TagStatsViewController: UIViewController {
             break
         }
         sender.selectedSegmentIndex = -1
+    }
+    
+    @objc func reloadTableView() {
+        switch self.selectedIndex {
+        case 0 :
+            self.refreshTableViewOrderBy(ascendingOrder: isAscendingSort)
+            break
+        case 1:
+            self.refreshTableViewOrderByFrequency()
+            break
+        default:
+            break
+        }
     }
     
     func refreshTableViewOrderBy (ascendingOrder: Bool) {
@@ -171,12 +184,12 @@ extension TagStatsViewController : UITableViewDataSource {
         case 0 :
             let tagData = self.tagDataModel![indexPath.row]
             cell.textLabel!.text = tagData.name!
-            
+            cell.detailTextLabel?.text = ""
             break
         case 1:
             let tagMetaData = self.tagMetaDataModel![indexPath.row]
-            cell.textLabel!.text =  String("TagName:\(tagMetaData.name!)  Count:\(tagMetaData.count)")
-            
+            cell.textLabel!.text =  "TagName:\(tagMetaData.name!)"
+            cell.detailTextLabel?.text = "Count:\(tagMetaData.count)"
             break
         case 2:
             break

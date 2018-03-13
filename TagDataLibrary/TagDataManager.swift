@@ -14,14 +14,14 @@ public enum Result<T>{
     case failure(Error)
 }
 
-extension Notification.Name {
-    static let tagDataLibraryUpdateNotification = Notification.Name("TagDataLibraryUpdateNotification")
+extension NSNotification.Name {
+    public static let TagContextObjectsDidChange = Notification.Name("TagContextObjectsDidChange")
 }
 
 //NotificationCenter.default.post(name:NSNotification.Name(rawValue: "YourMojiManagerNotification"), object: nil)
 
 public class TagDataManager: NSObject {
-   
+    
     @objc public dynamic var totalrecordsFetched: Int = 0
     
     private var isDataReadyforRead = false {
@@ -31,7 +31,7 @@ public class TagDataManager: NSObject {
         
         didSet(previousStatus) {
             if isDataReadyforRead == true {
-                NotificationCenter.default.post(name:NSNotification.Name(rawValue: "TagDataLibraryUpdateNotification"), object: nil)
+                NotificationCenter.default.post(name:NSNotification.Name.TagContextObjectsDidChange, object: nil)
             }
         }
     }
@@ -43,7 +43,7 @@ public class TagDataManager: NSObject {
      
      -return
      An initialized singleton object, or existing object.
-    */
+     */
     
     public class var sharedInstance: TagDataManager {
         struct Singelton  {
@@ -61,11 +61,11 @@ public class TagDataManager: NSObject {
      Fetch all the records from DB.
      
      -Parameters
-        -Bool: property to be compared and the order of the sort (ascending or descending).
+     -Bool: property to be compared and the order of the sort (ascending or descending).
      
      -return
      Returns a persistent store result or error
-    */
+     */
     
     public func fetchAllTagRecord(ascending: Bool = false, completion: @escaping (Result<[TagData]>) -> Void) {
         
@@ -74,7 +74,7 @@ public class TagDataManager: NSObject {
             
             // Create Progress
             let progress = Progress(totalUnitCount: 1)
-
+            
             // Become Current
             progress.becomeCurrent(withPendingUnitCount: 1)
             
@@ -86,7 +86,6 @@ public class TagDataManager: NSObject {
                 let sortDescriptor = NSSortDescriptor(key: "name", ascending: ascending)
                 fetchRequest.sortDescriptors = [sortDescriptor]
                 
-                // Set the sort descriptor for the tag Name attribute
                 fetchRequest.returnsObjectsAsFaults = false
                 
                 //intialize the async fetrequest & return the completion block
@@ -115,7 +114,7 @@ public class TagDataManager: NSObject {
                 
                 // Resign Current
                 progress.resignCurrent()
-
+                
             } catch {
                 // Report Error
                 completion(.failure(error))
@@ -158,7 +157,7 @@ public class TagDataManager: NSObject {
      Insert new record to DB.
      
      -Parameters
-        -[String]: Array of String.
+     -[String]: Array of String.
      
      - return
      Returns a success or error
@@ -224,20 +223,24 @@ public class TagDataManager: NSObject {
      Creates Duplicates records.
      
      -Parameters
-        -Int: Number of times that records get duplicates.
+     -Int: Number of times that records get duplicates.
      
      - return
      Returns a success or error
      */
+    public func createDuplicateRecordwithOperationQueue(count: Int32, completion: @escaping (Result<Any>) -> Void) {
+        
+    }
+    
     public func createDuplicateRecord(count: Int32, completion: @escaping (Result<Any>) -> Void) {
         
         // Get the background task(PrivateQueue context)
         coreDataStack.performBackgroundTask { context in
             
             // Create fetchRequest TagMetaData, To get list of existing tags
-            let fetchRequest: NSFetchRequest<TagData> = TagData.fetchRequest()
+            let fetchRequest: NSFetchRequest<TagMetaData> = TagMetaData.fetchRequest()
             
-            var result: [TagData]?
+            var result: [TagMetaData]?
             do {
                 // excute fetch
                 result = try context.fetch(fetchRequest)
@@ -247,23 +250,18 @@ public class TagDataManager: NSObject {
             
             if let result = result {
                 for i in 0 ..< result.count {
-                    let tagMetaData = result[i] as TagData
+                    let tagMetaData = result[i] as TagMetaData
                     for _ in 0 ..< count {
                         // Create new tag Data
                         let newTagData = TagData(context: context)
                         newTagData.name = tagMetaData.name
                         
-                        // Fix Me:
                         // Create the relationship
-                        //tagMetaData.mutableSetValue(forKey: "tagDataRelationship").add(newTagData)
+                        tagMetaData.mutableSetValue(forKey: "tagDataRelationship").add(newTagData)
                     }
                     
-                    //Fix Me:
-                    // Update the counter
-                    
-                    
                     // Update tagMetaData counter for that record
-                    //tagMetaData.count += count
+                    tagMetaData.count += count
                 }
             }
             
