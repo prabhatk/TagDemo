@@ -15,6 +15,7 @@
 		288186E42056B80000EE376C /* TagCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E32056B80000EE376C /* TagCoreDataStack.swift */; };
 		288186E62056CED000EE376C /* TagDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E52056CED000EE376C /* TagDataManager.swift */; };
 		288186E92056CEE800EE376C /* TagDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */; };
+		935E8ED8205861BE00DAF6DF /* EditTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E8ED7205861BE00DAF6DF /* EditTagViewController.swift */; };
 		938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C182054237500A7C1A4 /* AppDelegate.swift */; };
 		938A1C1E2054237500A7C1A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C1C2054237500A7C1A4 /* Main.storyboard */; };
 		938A1C232054237500A7C1A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C222054237500A7C1A4 /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 		288186E32056B80000EE376C /* TagCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCoreDataStack.swift; sourceTree = "<group>"; };
 		288186E52056CED000EE376C /* TagDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataManager.swift; sourceTree = "<group>"; };
 		288186E82056CEE800EE376C /* TagDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TagDataModel.xcdatamodel; sourceTree = "<group>"; };
+		935E8ED7205861BE00DAF6DF /* EditTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewController.swift; sourceTree = "<group>"; };
 		938A1C152054237500A7C1A4 /* TagExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		938A1C182054237500A7C1A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		938A1C1D2054237500A7C1A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				938A1C182054237500A7C1A4 /* AppDelegate.swift */,
 				938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */,
 				938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */,
+				935E8ED7205861BE00DAF6DF /* EditTagViewController.swift */,
 				938A1C1C2054237500A7C1A4 /* Main.storyboard */,
 				938A1C222054237500A7C1A4 /* Assets.xcassets */,
 				938A1C242054237500A7C1A4 /* LaunchScreen.storyboard */,
@@ -463,6 +466,7 @@
 				938A1C4D20542C8500A7C1A4 /* TagExerciseViewController.swift in Sources */,
 				938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */,
 				938A1C51205431B300A7C1A4 /* Utility.swift in Sources */,
+				935E8ED8205861BE00DAF6DF /* EditTagViewController.swift in Sources */,
 				938A1C4F20542D6300A7C1A4 /* TagStatsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

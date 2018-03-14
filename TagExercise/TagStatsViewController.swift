@@ -24,6 +24,7 @@ class TagStatsViewController: UIViewController {
     var observer: NSKeyValueObservation?
     
     
+    
     deinit {
         // remember to remove it when this object is deallocated
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.TagContextObjectsDidChange, object: nil)
@@ -197,5 +198,16 @@ extension TagStatsViewController : UITableViewDataSource {
             break
         }
         return cell
+    }
+}
+extension TagStatsViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "EditSegue", sender: self.tagDataModel?[indexPath.row])
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier  == "EditSegue" {
+            let destinationVC = segue.destination as! EditTagViewController
+            destinationVC.tagData = sender as? TagData
+        }
     }
 }

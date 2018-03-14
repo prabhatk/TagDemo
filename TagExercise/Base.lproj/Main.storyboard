@@ -150,11 +150,53 @@
                     <connections>
                         <outlet property="filterSegmentView" destination="4st-gQ-H8q" id="IpV-eU-5gQ"/>
                         <outlet property="tableView" destination="GYG-i4-lNP" id="VzU-Mh-BLZ"/>
+                        <segue destination="z5Y-vE-AZa" kind="show" identifier="EditSegue" id="AyK-sn-H2L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A51-TL-zZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1052" y="126.38680659670166"/>
+            <point key="canvasLocation" x="-886" y="126"/>
+        </scene>
+        <!--Edit Tag View Controller-->
+        <scene sceneID="lLx-Zh-mNS">
+            <objects>
+                <viewController id="z5Y-vE-AZa" customClass="EditTagViewController" customModule="TagExercise" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yl1-Tm-Eer">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MQM-JO-E1v">
+                                <rect key="frame" x="16" y="92" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter alphanumeric values only no special character please." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdD-xR-mrP">
+                                <rect key="frame" x="16" y="72" width="343" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bAe-5m-Fn8" firstAttribute="trailing" secondItem="MQM-JO-E1v" secondAttribute="trailing" constant="16" id="3oO-4X-4b5"/>
+                            <constraint firstItem="MQM-JO-E1v" firstAttribute="leading" secondItem="bAe-5m-Fn8" secondAttribute="leading" constant="16" id="R7p-19-yAw"/>
+                            <constraint firstItem="bAe-5m-Fn8" firstAttribute="trailing" secondItem="qdD-xR-mrP" secondAttribute="trailing" constant="16" id="Tfh-8E-HN5"/>
+                            <constraint firstItem="qdD-xR-mrP" firstAttribute="leading" secondItem="bAe-5m-Fn8" secondAttribute="leading" constant="16" id="Tnl-of-WsL"/>
+                            <constraint firstItem="MQM-JO-E1v" firstAttribute="top" secondItem="qdD-xR-mrP" secondAttribute="bottom" constant="8" id="VzR-lj-HJx"/>
+                            <constraint firstItem="qdD-xR-mrP" firstAttribute="top" secondItem="bAe-5m-Fn8" secondAttribute="top" constant="8" id="kg8-DJ-w3R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bAe-5m-Fn8"/>
+                    </view>
+                    <connections>
+                        <outlet property="errorLabel" destination="qdD-xR-mrP" id="iGG-nK-rzb"/>
+                        <outlet property="textField" destination="MQM-JO-E1v" id="0qU-ES-XZz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jzq-CL-sAO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4" y="125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ndq-6k-gFe">
