@@ -43,15 +43,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB7-mu-a9F">
-                                <rect key="frame" x="171" y="217" width="32" height="30"/>
+                                <rect key="frame" x="171" y="228" width="32" height="30"/>
                                 <state key="normal" title="ADD"/>
                                 <connections>
                                     <action selector="addButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VpM-Ka-M2U"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-EZ-eIV">
-                                <rect key="frame" x="140" y="270" width="95" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhW-EZ-eIV">
+                                <rect key="frame" x="159" y="278" width="57" height="30"/>
                                 <state key="normal" title="Clear All"/>
                                 <connections>
                                     <action selector="clearButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="awz-Mr-Tth"/>
@@ -63,10 +62,12 @@
                             <constraint firstItem="ERo-yw-hxw" firstAttribute="trailing" secondItem="I8z-CP-rbO" secondAttribute="trailing" id="3ar-oJ-mYY"/>
                             <constraint firstItem="OB7-mu-a9F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3b6-eo-Ous"/>
                             <constraint firstItem="i5h-0W-ah6" firstAttribute="top" secondItem="ERo-yw-hxw" secondAttribute="bottom" constant="16" id="7FC-CE-K0k"/>
+                            <constraint firstItem="EhW-EZ-eIV" firstAttribute="top" secondItem="OB7-mu-a9F" secondAttribute="bottom" constant="20" id="HvO-6t-ajJ"/>
                             <constraint firstItem="i5h-0W-ah6" firstAttribute="leading" secondItem="ERo-yw-hxw" secondAttribute="leading" id="Ugy-ye-Lur"/>
                             <constraint firstItem="i5h-0W-ah6" firstAttribute="trailing" secondItem="ERo-yw-hxw" secondAttribute="trailing" id="VSg-ZJ-zha"/>
-                            <constraint firstItem="OB7-mu-a9F" firstAttribute="top" secondItem="i5h-0W-ah6" secondAttribute="bottom" constant="9" id="Vvr-nK-8XG"/>
+                            <constraint firstItem="OB7-mu-a9F" firstAttribute="top" secondItem="i5h-0W-ah6" secondAttribute="bottom" constant="20" id="Vvr-nK-8XG"/>
                             <constraint firstItem="I8z-CP-rbO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="XrF-lN-jb6"/>
+                            <constraint firstItem="EhW-EZ-eIV" firstAttribute="centerX" secondItem="OB7-mu-a9F" secondAttribute="centerX" id="eSQ-Qe-cvq"/>
                             <constraint firstItem="ERo-yw-hxw" firstAttribute="top" secondItem="I8z-CP-rbO" secondAttribute="bottom" constant="16" id="oqI-F3-aVX"/>
                             <constraint firstItem="ERo-yw-hxw" firstAttribute="leading" secondItem="I8z-CP-rbO" secondAttribute="leading" id="rcg-yT-g0P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="I8z-CP-rbO" secondAttribute="trailing" constant="16" id="s0f-f9-ZOE"/>

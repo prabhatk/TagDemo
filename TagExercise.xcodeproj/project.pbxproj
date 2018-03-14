@@ -199,7 +199,6 @@
 		938A1C172054237500A7C1A4 /* TagExercise */ = {
 			isa = PBXGroup;
 			children = (
-				938A1C492054239700A7C1A4 /* CoreDataStack */,
 				938A1C182054237500A7C1A4 /* AppDelegate.swift */,
 				938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */,
 				938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */,
@@ -229,13 +228,6 @@
 				938A1C3D2054237500A7C1A4 /* Info.plist */,
 			);
 			path = TagExerciseUITests;
-			sourceTree = "<group>";
-		};
-		938A1C492054239700A7C1A4 /* CoreDataStack */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreDataStack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

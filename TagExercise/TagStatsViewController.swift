@@ -189,11 +189,13 @@ extension TagStatsViewController : UITableViewDataSource {
             let tagData = self.tagDataModel![indexPath.row]
             cell.textLabel!.text = tagData.name!
             cell.detailTextLabel?.text = ""
+            cell.accessoryType = .disclosureIndicator
             break
         case 1:
             let tagMetaData = self.tagMetaDataModel![indexPath.row]
             cell.textLabel!.text =  "TagName:\(tagMetaData.name!)"
             cell.detailTextLabel?.text = "Count:\(tagMetaData.count)"
+            cell.accessoryType = .none
             break
         case 2:
             break
