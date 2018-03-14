@@ -24,9 +24,12 @@ public class TagDataManager: NSObject {
     
     @objc public dynamic var totalrecordsFetched: Int = 0
     
+    private let coreDataStack = TagCoreDataStack();
+    
     private var isDataReadyforRead = false {
         willSet(incomingStatus){
-            print("About to set status to: \(incomingStatus)")
+            //print("About to set status to: \(incomingStatus)")
+            
         }
         
         didSet(previousStatus) {
@@ -36,15 +39,12 @@ public class TagDataManager: NSObject {
         }
     }
     
-    private let coreDataStack = TagCoreDataStack();
-    
     /**
      To initialize a singleton object of this class.
      
      -return
      An initialized singleton object, or existing object.
      */
-    
     public class var sharedInstance: TagDataManager {
         struct Singelton  {
             static var instance = TagDataManager()
@@ -52,10 +52,10 @@ public class TagDataManager: NSObject {
         return Singelton.instance
     }
     
-    
     private override init() {
         super.init()
     }
+
     
     /**
      Fetch all the records from DB.
@@ -66,7 +66,6 @@ public class TagDataManager: NSObject {
      -return
      Returns a persistent store result or error
      */
-    
     public func fetchAllTagRecord(ascending: Bool = false, completion: @escaping (Result<[TagData]>) -> Void) {
         
         // Get the foreground task(MainQueue context)
@@ -94,7 +93,6 @@ public class TagDataManager: NSObject {
                     if let asynchronousFetchProgress = results.progress {
                         // Remove Observer
                         asynchronousFetchProgress.removeObserver(self, forKeyPath: "completedUnitCount")
-                        asynchronousFetchProgress.removeObserver(self, forKeyPath: "totalUnitCount")
                     }
                     
                     let items: [TagData] = results.finalResult!
@@ -107,10 +105,7 @@ public class TagDataManager: NSObject {
                 // Add Observer
                 if let asynchronousFetchProgress = asynchronousFetchResult.progress {
                     asynchronousFetchProgress.addObserver(self, forKeyPath: "completedUnitCount", options: NSKeyValueObservingOptions.new, context: nil)
-                    
-                    asynchronousFetchProgress.addObserver(self, forKeyPath: "totalUnitCount", options: NSKeyValueObservingOptions.new, context: nil)
                 }
-                
                 
                 // Resign Current
                 progress.resignCurrent()
@@ -166,7 +161,6 @@ public class TagDataManager: NSObject {
      - return
      Returns a success or error
      */
-    
     public func insertRecord(tagInputArray: [String], completion: @escaping (Result<Any>) -> Void) {
         
         // Get the background task(PrivateQueue context)
@@ -232,10 +226,6 @@ public class TagDataManager: NSObject {
      - return
      Returns a success or error
      */
-    public func createDuplicateRecordwithOperationQueue(count: Int32, completion: @escaping (Result<Any>) -> Void) {
-        
-    }
-    
     public func createDuplicateRecord(count: Int32, completion: @escaping (Result<Any>) -> Void) {
         
         // Get the background task(PrivateQueue context)
@@ -280,16 +270,94 @@ public class TagDataManager: NSObject {
         }
     }
     
+    
+    /**
+     Update tag name of a particular record
+     
+     -Parameters
+     -NSManagedObject: The record which should be be updated.
+     -String: Value to be updated to that record.
+     
+     
+     - return
+     Returns success or error
+     */
+    public func updateTagName(object: TagData, newName: String, completion: @escaping (Result<Any>) -> Void) {
+        
+        // In case of existing records & update name are same just return
+        if object.name == newName {
+            completion(.success("Success"))
+        }
+        
+        // Get the managedobjectid coz update can happen in different thread
+        let moID = object.objectID
+        coreDataStack.performBackgroundTask { context in
+            var existingRecord:TagData?
+            do {
+                try existingRecord = context.existingObject(with: moID) as? TagData
+            } catch {
+                completion(.failure(error))
+            }
+            
+            //delete the existing record
+            context.delete(existingRecord!);
+            
+            // Insert a new record for the entry
+            self.insertRecord(tagInputArray: [newName],  completion: { (result: Result<Any>) in
+                switch result {
+                case .success( _):
+                    completion(.success("Success"))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            })
+            
+        }
+    }
+    
+    /**
+    Function to clear all DB data
+ 
+    */
+    public func clearData(completion: @escaping (Result<Any>) -> Void) {
+        
+        // Get the background task(PrivateQueue context)
+        coreDataStack.performBackgroundTask { context in
+            
+            // Create fetchRequest TagMetaData, To get list of existing tags
+            let fetchRequest: NSFetchRequest<TagMetaData> = TagMetaData.fetchRequest()
+            
+            var result: [TagMetaData]?
+            do {
+                // excute fetch
+                result = try context.fetch(fetchRequest)
+            } catch {
+                completion(.failure(error))
+            }
+            
+            if let result = result {
+                for i in 0 ..< result.count {
+                    //delete the existing record
+                    context.delete(result[i]);
+                }
+            }
+            
+            do {
+                // try saving contect
+                try context.save()
+                self.isDataReadyforRead = true
+                completion(.success("Success"))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     // Key Value observer for aync fetch progress 
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "completedUnitCount" {
             if let recordFetched = change?[.newKey] {
                 self.totalrecordsFetched = recordFetched as! Int
-                print("Fetched \(recordFetched) Records")
-            }
-        } else if keyPath == "totalUnitCount" {
-            if let number = change?[.newKey] {
-                print("Total \(number) Records")
             }
         }
     }

@@ -10,7 +10,10 @@ import Foundation
 
 extension String {
     func isAlphaNumeric() -> Bool {
-        //return self.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil && self != ""
-        return !isEmpty && range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil
+        if isEmpty {
+            return isEmpty
+        }
+        let invertedalphanumerics = CharacterSet.alphanumerics.inverted
+        return (self as NSString).rangeOfCharacter(from: invertedalphanumerics).location == NSNotFound
     }
 }

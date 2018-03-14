@@ -31,18 +31,27 @@ class EditTagViewController : UIViewController {
         }
         self.title = "Edit Tag"
     }
+    
     @objc
     func saveRecords() {
         if self.textField.text?.isAlphaNumeric() == true {
             self.errorLabel.isHidden = true
-            // if data saved successfully
-            self.tagData = nil
-            self.textField.text = ""
             self.saveButton?.isEnabled = false
-            //self.navigationController?.popViewController(animated: true)
-            // we can also do
-            //endif
             
+            let manager = TagDataManager.sharedInstance
+            manager.updateTagName(object: self.tagData!, newName: self.textField.text!, completion: { (result: Result<Any>) in
+                switch result {
+                case .success( _):
+                    NSLog("DB update, Success")
+                case .failure(let error):
+                    NSLog("DB update Failed with error \(error)")
+                }
+                
+                DispatchQueue.main.async {
+                    self.saveButton?.isEnabled = true
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
         }
         else {
             self.errorLabel.isHidden = false

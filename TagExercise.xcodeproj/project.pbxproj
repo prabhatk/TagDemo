@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282E50DA20596E83005D80C2 /* TagDataLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E50D920596E83005D80C2 /* TagDataLog.swift */; };
 		288186CE2056B7BC00EE376C /* TagDataLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288186C52056B7BC00EE376C /* TagDataLibrary.framework */; };
 		288186D52056B7BC00EE376C /* TagDataLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186D42056B7BC00EE376C /* TagDataLibraryTests.swift */; };
 		288186D72056B7BC00EE376C /* TagDataLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 288186C72056B7BC00EE376C /* TagDataLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,6 +81,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		282E50D920596E83005D80C2 /* TagDataLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataLog.swift; sourceTree = "<group>"; };
 		288186C52056B7BC00EE376C /* TagDataLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TagDataLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		288186C72056B7BC00EE376C /* TagDataLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagDataLibrary.h; sourceTree = "<group>"; };
 		288186C82056B7BC00EE376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -152,8 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				288186C72056B7BC00EE376C /* TagDataLibrary.h */,
-				288186E32056B80000EE376C /* TagCoreDataStack.swift */,
 				288186E52056CED000EE376C /* TagDataManager.swift */,
+				282E50D920596E83005D80C2 /* TagDataLog.swift */,
+				288186E32056B80000EE376C /* TagCoreDataStack.swift */,
 				288186C82056B7BC00EE376C /* Info.plist */,
 				288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */,
 			);
@@ -448,6 +451,7 @@
 				288186E92056CEE800EE376C /* TagDataModel.xcdatamodeld in Sources */,
 				288186E62056CED000EE376C /* TagDataManager.swift in Sources */,
 				288186E42056B80000EE376C /* TagCoreDataStack.swift in Sources */,
+				282E50DA20596E83005D80C2 /* TagDataLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +580,7 @@
 				INFOPLIST_FILE = TagDataLibrary/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vz.TagDataLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

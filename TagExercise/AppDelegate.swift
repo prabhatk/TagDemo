@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         var paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        print("\(paths[0])")
+        print("Application Path : \(paths[0])")
         
         return true
     }

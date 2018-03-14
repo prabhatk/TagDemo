@@ -10,6 +10,10 @@ import UIKit
 import CoreData
 import TagDataLibrary
 
+struct myConstants {
+    static let numberoftimestoduplicate = 1000
+}
+
 class TagStatsViewController: UIViewController {
     
     @IBOutlet weak var filterSegmentView : UISegmentedControl!
@@ -27,6 +31,7 @@ class TagStatsViewController: UIViewController {
     
     deinit {
         // remember to remove it when this object is deallocated
+        NSLog("Removed observer for the db context change")
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.TagContextObjectsDidChange, object: nil)
     }
     
@@ -36,9 +41,10 @@ class TagStatsViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let manager = TagDataManager.sharedInstance
         
-       self.addButton = UIBarButtonItem(title: "x1000", style: .plain, target: self, action: #selector(createDuplicateRecords))
+        self.addButton = UIBarButtonItem(title: "\(myConstants.numberoftimestoduplicate)x", style: .plain, target: self, action: #selector(createDuplicateRecords))
         navigationItem.rightBarButtonItem = addButton
-       
+        
+        NSLog("Added observer for keypath of Records Fetched")
         observer = manager.observe(\.totalrecordsFetched, options: [.new]) { [weak self] object, change in
             if let value = change.newValue {
                 DispatchQueue.main.async {
@@ -47,9 +53,11 @@ class TagStatsViewController: UIViewController {
             }
         }
         
+        NSLog("Added observer for the db context change")
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadTableView), name: NSNotification.Name.TagContextObjectsDidChange, object: nil)
         
-       self.refreshTableViewOrderBy(ascendingOrder: true)
+        NSLog("Loading all tags sort based on ascending")
+        self.refreshTableViewOrderBy(ascendingOrder: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,13 +67,14 @@ class TagStatsViewController: UIViewController {
     
     @objc
     func createDuplicateRecords() {
+        NSLog("Duplicated the unique record by \(myConstants.numberoftimestoduplicate)x)")
         let manager = TagDataManager.sharedInstance
-        manager.createDuplicateRecord(count: 1000, completion: { (result: Result<Any>) in
+        manager.createDuplicateRecord(count: Int32(myConstants.numberoftimestoduplicate), completion: { (result: Result<Any>) in
             switch result {
             case .success:
-                NSLog("Success Insert")
+                NSLog("Success, Duplicated records created")
             case .failure(let error):
-                print("\(error)")
+                NSLog("Failed, with error: \(error)")
             }
         })
     }
@@ -74,6 +83,7 @@ class TagStatsViewController: UIViewController {
     // filterSegmentChangeAction method will be called once user apply filter on the given data.
     @IBAction func filterSegmentChangeAction(_ sender : UISegmentedControl) {
         self.selectedIndex = sender.selectedSegmentIndex
+        NSLog("Selected segmented index: \(self.selectedIndex )")
         switch self.selectedIndex {
         case 0 :
             isAscendingSort = !isAscendingSort
@@ -109,57 +119,50 @@ class TagStatsViewController: UIViewController {
     }
     
     func refreshTableViewOrderBy (ascendingOrder: Bool) {
-        let manager = TagDataManager.sharedInstance
         
+        let manager = TagDataManager.sharedInstance
+        NSLog("Fetch all record based on order ascending: \(ascendingOrder)")
         manager.fetchAllTagRecord(ascending: ascendingOrder) { (result: Result<[TagData]>) in
             switch result {
             case .success(let resultSet):
                 let itemCount = resultSet.count
                 self.tagDataModel = resultSet as [TagData]
+                NSLog("All  record fetched - count: \(itemCount)")
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.navigationItem.title = "\(itemCount)"
                 }
             case .failure(let error):
-                print("\(error)")
+                NSLog("Failed to fetch the record with error: \(error)")
             }
         }
     }
     
     
     func refreshTableViewOrderByFrequency() {
-        let manager = TagDataManager.sharedInstance
         
+        let manager = TagDataManager.sharedInstance
+        NSLog("Fetch all unique tag record based on usage frequency")
         manager.fetchAllUniqueTagReocrd (){ (result: Result<[TagMetaData]>) in
             switch result {
             case .success(let resultSet):
                 let itemCount = resultSet.count
                 self.tagMetaDataModel = resultSet as [TagMetaData]
+                NSLog("All  record fetched - count: \(itemCount)")
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.navigationItem.title = "\(itemCount)"
                 }
             case .failure(let error):
-                print("\(error)")
+                NSLog("Failed to fetch the record with error: \(error)")
             }
         }
     }
-    
-    
-    // MARK: - Fetched results controller
-    
-    //    func configureCell(_ cell: UITableViewCell, withTag tag: TagData) {
-    //        cell.textLabel!.text = tag.name!
-    //
-    //    }
-    
 }
 
 
-
 extension TagStatsViewController : UITableViewDataSource {
-    // MARK: - Table View
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -200,10 +203,14 @@ extension TagStatsViewController : UITableViewDataSource {
         return cell
     }
 }
+
+
 extension TagStatsViewController : UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "EditSegue", sender: self.tagDataModel?[indexPath.row])
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier  == "EditSegue" {
             let destinationVC = segue.destination as! EditTagViewController

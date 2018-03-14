@@ -28,39 +28,53 @@ class TagExerciseViewController: UIViewController {
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
+        self.processInputfromTextView()
+    }
+    
+    
+    @IBAction func clearButtonAction(_ sender: Any) {
+        let manager = TagDataManager.sharedInstance
+        manager.clearData(completion: { (result: Result<Any>) in
+            switch result {
+            case .success( _):
+                NSLog("DB data cleared success")
+            case .failure(let error):
+                NSLog("DB data Failed to clear with error \(error)")
+            }
+            
+        })
+    } 
+    
+    func processInputfromTextView() {
+        
         // check for white spaces and new line characters
         let trimmedString = self.tagTextView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         // trimming each elements of the tag array
         let seperatedStringArray = (trimmedString.split(separator: ",")).map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
         
-        // flag to check if all valid string in set oterwise will not perfrom database operation
-        var isValidTags = true
-        
         // checking
         for tag in seperatedStringArray {
             if tag.isAlphaNumeric() == false {
-                isValidTags = false
-                break
+                NSLog("Tag :\(tag) is not alpha numeric")
+                self.errorLabel.isHidden = false
+                return;
             }
         }
-       
-        // if falg is false there than error will be shown
-        if isValidTags == false {
-            self.errorLabel.isHidden = false
-            return;
-        }
         
-        
-        print("\(seperatedStringArray)")
+        //Hide the error lable
+        self.errorLabel.isHidden = true
+
+        self.tagTextView.text = ""
+        NSLog("Tags to be inserted: \(seperatedStringArray)")
         
         let manager = TagDataManager.sharedInstance
         manager.insertRecord(tagInputArray: seperatedStringArray,  completion: { (result: Result<Any>) in
             switch result {
             case .success( _):
-                NSLog("success")
+                NSLog("DB data insert, Success")
             case .failure(let error):
-                NSLog("\(error)")
+                NSLog("DB data insert, Failed with error \(error)")
             }
         })
     }
