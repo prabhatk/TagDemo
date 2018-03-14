@@ -7,15 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		282E50DA20596E83005D80C2 /* TagDataLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282E50D920596E83005D80C2 /* TagDataLog.swift */; };
-		288186CE2056B7BC00EE376C /* TagDataLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288186C52056B7BC00EE376C /* TagDataLibrary.framework */; };
-		288186D52056B7BC00EE376C /* TagDataLibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186D42056B7BC00EE376C /* TagDataLibraryTests.swift */; };
-		288186D72056B7BC00EE376C /* TagDataLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 288186C72056B7BC00EE376C /* TagDataLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		288186DA2056B7BC00EE376C /* TagDataLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288186C52056B7BC00EE376C /* TagDataLibrary.framework */; };
-		288186DB2056B7BC00EE376C /* TagDataLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 288186C52056B7BC00EE376C /* TagDataLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		288186E42056B80000EE376C /* TagCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E32056B80000EE376C /* TagCoreDataStack.swift */; };
-		288186E62056CED000EE376C /* TagDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288186E52056CED000EE376C /* TagDataManager.swift */; };
-		288186E92056CEE800EE376C /* TagDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */; };
+		282E51012059962B005D80C2 /* TagDataLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282E51002059962B005D80C2 /* TagDataLibrary.framework */; };
+		282E51022059962B005D80C2 /* TagDataLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 282E51002059962B005D80C2 /* TagDataLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		935E8ED8205861BE00DAF6DF /* EditTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E8ED7205861BE00DAF6DF /* EditTagViewController.swift */; };
 		938A1C192054237500A7C1A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938A1C182054237500A7C1A4 /* AppDelegate.swift */; };
 		938A1C1E2054237500A7C1A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 938A1C1C2054237500A7C1A4 /* Main.storyboard */; };
@@ -29,27 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		288186CF2056B7BC00EE376C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938A1C0D2054237500A7C1A4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 288186C42056B7BC00EE376C;
-			remoteInfo = TagDataLibrary;
-		};
-		288186D12056B7BC00EE376C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938A1C0D2054237500A7C1A4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 938A1C142054237500A7C1A4;
-			remoteInfo = TagExercise;
-		};
-		288186D82056B7BC00EE376C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 938A1C0D2054237500A7C1A4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 288186C42056B7BC00EE376C;
-			remoteInfo = TagDataLibrary;
-		};
 		938A1C2D2054237500A7C1A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 938A1C0D2054237500A7C1A4 /* Project object */;
@@ -73,7 +45,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				288186DB2056B7BC00EE376C /* TagDataLibrary.framework in Embed Frameworks */,
+				282E51022059962B005D80C2 /* TagDataLibrary.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,16 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		282E50D920596E83005D80C2 /* TagDataLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataLog.swift; sourceTree = "<group>"; };
-		288186C52056B7BC00EE376C /* TagDataLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TagDataLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		288186C72056B7BC00EE376C /* TagDataLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagDataLibrary.h; sourceTree = "<group>"; };
-		288186C82056B7BC00EE376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		288186CD2056B7BC00EE376C /* TagDataLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagDataLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		288186D42056B7BC00EE376C /* TagDataLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataLibraryTests.swift; sourceTree = "<group>"; };
-		288186D62056B7BC00EE376C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		288186E32056B80000EE376C /* TagCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCoreDataStack.swift; sourceTree = "<group>"; };
-		288186E52056CED000EE376C /* TagDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataManager.swift; sourceTree = "<group>"; };
-		288186E82056CEE800EE376C /* TagDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TagDataModel.xcdatamodel; sourceTree = "<group>"; };
+		282E51002059962B005D80C2 /* TagDataLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TagDataLibrary.framework; path = "TagExercise/External Lib/TagDataLibrary.framework"; sourceTree = "<group>"; };
 		935E8ED7205861BE00DAF6DF /* EditTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagViewController.swift; sourceTree = "<group>"; };
 		938A1C152054237500A7C1A4 /* TagExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		938A1C182054237500A7C1A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,26 +73,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		288186C12056B7BC00EE376C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		288186CA2056B7BC00EE376C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				288186CE2056B7BC00EE376C /* TagDataLibrary.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		938A1C122054237500A7C1A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				288186DA2056B7BC00EE376C /* TagDataLibrary.framework in Frameworks */,
+				282E51012059962B005D80C2 /* TagDataLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,36 +98,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		288186C62056B7BC00EE376C /* TagDataLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				288186C72056B7BC00EE376C /* TagDataLibrary.h */,
-				288186E52056CED000EE376C /* TagDataManager.swift */,
-				288186E32056B80000EE376C /* TagCoreDataStack.swift */,
-				282E50D920596E83005D80C2 /* TagDataLog.swift */,
-				288186C82056B7BC00EE376C /* Info.plist */,
-				288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */,
-			);
-			path = TagDataLibrary;
-			sourceTree = "<group>";
-		};
-		288186D32056B7BC00EE376C /* TagDataLibraryTests */ = {
-			isa = PBXGroup;
-			children = (
-				288186D42056B7BC00EE376C /* TagDataLibraryTests.swift */,
-				288186D62056B7BC00EE376C /* Info.plist */,
-			);
-			path = TagDataLibraryTests;
-			sourceTree = "<group>";
-		};
 		938A1C0C2054237500A7C1A4 = {
 			isa = PBXGroup;
 			children = (
+				282E51002059962B005D80C2 /* TagDataLibrary.framework */,
 				938A1C172054237500A7C1A4 /* TagExercise */,
 				938A1C2F2054237500A7C1A4 /* TagExerciseTests */,
 				938A1C3A2054237500A7C1A4 /* TagExerciseUITests */,
-				288186C62056B7BC00EE376C /* TagDataLibrary */,
-				288186D32056B7BC00EE376C /* TagDataLibraryTests */,
 				938A1C162054237500A7C1A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -190,8 +115,6 @@
 				938A1C152054237500A7C1A4 /* TagExercise.app */,
 				938A1C2C2054237500A7C1A4 /* TagExerciseTests.xctest */,
 				938A1C372054237500A7C1A4 /* TagExerciseUITests.xctest */,
-				288186C52056B7BC00EE376C /* TagDataLibrary.framework */,
-				288186CD2056B7BC00EE376C /* TagDataLibraryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,7 +122,6 @@
 		938A1C172054237500A7C1A4 /* TagExercise */ = {
 			isa = PBXGroup;
 			children = (
-				938A1C492054239700A7C1A4 /* CoreDataStack */,
 				938A1C182054237500A7C1A4 /* AppDelegate.swift */,
 				938A1C4C20542C8500A7C1A4 /* TagExerciseViewController.swift */,
 				938A1C4E20542D6300A7C1A4 /* TagStatsViewController.swift */,
@@ -231,64 +153,9 @@
 			path = TagExerciseUITests;
 			sourceTree = "<group>";
 		};
-		938A1C492054239700A7C1A4 /* CoreDataStack */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreDataStack;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		288186C22056B7BC00EE376C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				288186D72056B7BC00EE376C /* TagDataLibrary.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		288186C42056B7BC00EE376C /* TagDataLibrary */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 288186E02056B7BC00EE376C /* Build configuration list for PBXNativeTarget "TagDataLibrary" */;
-			buildPhases = (
-				288186C02056B7BC00EE376C /* Sources */,
-				288186C12056B7BC00EE376C /* Frameworks */,
-				288186C22056B7BC00EE376C /* Headers */,
-				288186C32056B7BC00EE376C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TagDataLibrary;
-			productName = TagDataLibrary;
-			productReference = 288186C52056B7BC00EE376C /* TagDataLibrary.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		288186CC2056B7BC00EE376C /* TagDataLibraryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 288186E22056B7BC00EE376C /* Build configuration list for PBXNativeTarget "TagDataLibraryTests" */;
-			buildPhases = (
-				288186C92056B7BC00EE376C /* Sources */,
-				288186CA2056B7BC00EE376C /* Frameworks */,
-				288186CB2056B7BC00EE376C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				288186D02056B7BC00EE376C /* PBXTargetDependency */,
-				288186D22056B7BC00EE376C /* PBXTargetDependency */,
-			);
-			name = TagDataLibraryTests;
-			productName = TagDataLibraryTests;
-			productReference = 288186CD2056B7BC00EE376C /* TagDataLibraryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		938A1C142054237500A7C1A4 /* TagExercise */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 938A1C402054237500A7C1A4 /* Build configuration list for PBXNativeTarget "TagExercise" */;
@@ -301,7 +168,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				288186D92056B7BC00EE376C /* PBXTargetDependency */,
 			);
 			name = TagExercise;
 			productName = TagExercise;
@@ -354,16 +220,6 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Prabhat Kasera";
 				TargetAttributes = {
-					288186C42056B7BC00EE376C = {
-						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
-					};
-					288186CC2056B7BC00EE376C = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 938A1C142054237500A7C1A4;
-					};
 					938A1C142054237500A7C1A4 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -396,27 +252,11 @@
 				938A1C142054237500A7C1A4 /* TagExercise */,
 				938A1C2B2054237500A7C1A4 /* TagExerciseTests */,
 				938A1C362054237500A7C1A4 /* TagExerciseUITests */,
-				288186C42056B7BC00EE376C /* TagDataLibrary */,
-				288186CC2056B7BC00EE376C /* TagDataLibraryTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		288186C32056B7BC00EE376C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		288186CB2056B7BC00EE376C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		938A1C132054237500A7C1A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -444,25 +284,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		288186C02056B7BC00EE376C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				288186E92056CEE800EE376C /* TagDataModel.xcdatamodeld in Sources */,
-				288186E62056CED000EE376C /* TagDataManager.swift in Sources */,
-				288186E42056B80000EE376C /* TagCoreDataStack.swift in Sources */,
-				282E50DA20596E83005D80C2 /* TagDataLog.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		288186C92056B7BC00EE376C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				288186D52056B7BC00EE376C /* TagDataLibraryTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		938A1C112054237500A7C1A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -494,21 +315,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		288186D02056B7BC00EE376C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 288186C42056B7BC00EE376C /* TagDataLibrary */;
-			targetProxy = 288186CF2056B7BC00EE376C /* PBXContainerItemProxy */;
-		};
-		288186D22056B7BC00EE376C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 938A1C142054237500A7C1A4 /* TagExercise */;
-			targetProxy = 288186D12056B7BC00EE376C /* PBXContainerItemProxy */;
-		};
-		288186D92056B7BC00EE376C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 288186C42056B7BC00EE376C /* TagDataLibrary */;
-			targetProxy = 288186D82056B7BC00EE376C /* PBXContainerItemProxy */;
-		};
 		938A1C2E2054237500A7C1A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 938A1C142054237500A7C1A4 /* TagExercise */;
@@ -541,86 +347,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		288186DC2056B7BC00EE376C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TagDataLibrary/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vz.TagDataLibrary;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		288186DD2056B7BC00EE376C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TagDataLibrary/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vz.TagDataLibrary;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		288186DE2056B7BC00EE376C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TagDataLibraryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vz.TagDataLibraryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TagExercise.app/TagExercise";
-			};
-			name = Debug;
-		};
-		288186DF2056B7BC00EE376C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TagDataLibraryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.vz.TagDataLibraryTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TagExercise.app/TagExercise";
-			};
-			name = Release;
-		};
 		938A1C3E2054237500A7C1A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -731,11 +457,15 @@
 		938A1C412054237500A7C1A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TagExercise/External\\ Lib/**",
+				);
 				INFOPLIST_FILE = TagExercise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aarchaya.TagExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -746,11 +476,15 @@
 		938A1C422054237500A7C1A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TagExercise/External\\ Lib/**",
+				);
 				INFOPLIST_FILE = TagExercise/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aarchaya.TagExercise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -823,24 +557,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		288186E02056B7BC00EE376C /* Build configuration list for PBXNativeTarget "TagDataLibrary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				288186DC2056B7BC00EE376C /* Debug */,
-				288186DD2056B7BC00EE376C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		288186E22056B7BC00EE376C /* Build configuration list for PBXNativeTarget "TagDataLibraryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				288186DE2056B7BC00EE376C /* Debug */,
-				288186DF2056B7BC00EE376C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		938A1C102054237500A7C1A4 /* Build configuration list for PBXProject "TagExercise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -878,19 +594,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				288186E82056CEE800EE376C /* TagDataModel.xcdatamodel */,
-			);
-			currentVersion = 288186E82056CEE800EE376C /* TagDataModel.xcdatamodel */;
-			path = TagDataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 938A1C0D2054237500A7C1A4 /* Project object */;
 }

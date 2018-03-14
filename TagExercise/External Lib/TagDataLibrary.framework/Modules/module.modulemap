@@ -1,0 +1,11 @@
+framework module TagDataLibrary {
+  umbrella header "TagDataLibrary.h"
+
+  export *
+  module * { export * }
+}
+
+module TagDataLibrary.Swift {
+    header "TagDataLibrary-Swift.h"
+    requires objc
+}
