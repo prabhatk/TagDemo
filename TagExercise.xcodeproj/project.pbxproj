@@ -155,8 +155,8 @@
 			children = (
 				288186C72056B7BC00EE376C /* TagDataLibrary.h */,
 				288186E52056CED000EE376C /* TagDataManager.swift */,
-				282E50D920596E83005D80C2 /* TagDataLog.swift */,
 				288186E32056B80000EE376C /* TagCoreDataStack.swift */,
+				282E50D920596E83005D80C2 /* TagDataLog.swift */,
 				288186C82056B7BC00EE376C /* Info.plist */,
 				288186E72056CEE800EE376C /* TagDataModel.xcdatamodeld */,
 			);

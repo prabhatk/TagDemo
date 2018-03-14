@@ -8,19 +8,13 @@
 
 import Foundation
 
-public class TagDataLog: NSObject {
+public class TagDataLogger {
     
-    private var isEnableLogs = false;
-    
-    public func enableLogs(enable:Bool) {
-        isEnableLogs = enable
-    }
-    
-    public func TAG_LOG_INFO(_ format: String = "", _ args: [CVarArg] = [], file: String = #file, function: String = #function, line: Int = #line) {
-        if isEnableLogs {
+     class func log(message: String, _ args: [CVarArg] = [], file: String = #file, function: String = #function, line: Int = #line) {
+        #if DEBUG
             let fileUrl = file.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
             let filename = URL(string: fileUrl!)?.lastPathComponent.components(separatedBy: ".").first
-            print("[TagData:] \(String(describing: filename)).\(function) line \(line) $ \(format)")
-        }
+            print("[TagData:] \(String(describing: filename)).\(function) line \(line) $ \(message)")
+        #endif
     }
 }

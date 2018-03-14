@@ -42,7 +42,7 @@ final class TagCoreDataStack: TagCoreDataStackProtocol {
         let container  = NSPersistentContainer(name: momdName, managedObjectModel: mom)
         container.loadPersistentStores(completionHandler: { [weak self](storeDescription, error) in
             if let error = error {
-                NSLog("CoreData error \(error), \(String(describing: error._userInfo))")
+                TagDataLogger.log(message:"CoreData error \(error), \(String(describing: error._userInfo))")
                 self?.errorHandler(error)
             }
         })

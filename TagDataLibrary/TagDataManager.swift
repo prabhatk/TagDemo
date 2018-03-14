@@ -29,12 +29,12 @@ public class TagDataManager: NSObject {
     private var isDataReadyforRead = false {
         willSet(incomingStatus){
             //print("About to set status to: \(incomingStatus)")
-            
         }
         
         didSet(previousStatus) {
             if isDataReadyforRead == true {
                 NotificationCenter.default.post(name:NSNotification.Name.TagContextObjectsDidChange, object: nil)
+                TagDataLogger.log(message: "Posted notificationTagContextObjectsDidChange ")
             }
         }
     }
@@ -95,6 +95,7 @@ public class TagDataManager: NSObject {
                         asynchronousFetchProgress.removeObserver(self, forKeyPath: "completedUnitCount")
                     }
                     
+                    TagDataLogger.log(message: "Fetch completed ")
                     let items: [TagData] = results.finalResult!
                     completion(.success(items))
                 })
@@ -141,6 +142,7 @@ public class TagDataManager: NSObject {
                 //intialize the async fetrequest & return the completion block
                 let asynchronousFetchRequest = NSAsynchronousFetchRequest(fetchRequest:fetchRequest, completionBlock: {  (results: NSAsynchronousFetchResult) in
                     let items : [TagMetaData] = results.finalResult!
+                    TagDataLogger.log(message: "Fetch completed ")
                     completion(.success(items))
                 })
                 // execute the fetch request
@@ -209,6 +211,7 @@ public class TagDataManager: NSObject {
                 // Try saving contect
                 try context.save()
                 self.isDataReadyforRead = true
+                TagDataLogger.log(message: "Save completed ")
                 completion(.success("Success"))
             } catch {
                 //report error
@@ -263,6 +266,7 @@ public class TagDataManager: NSObject {
                 // try saving contect
                 try context.save()
                 self.isDataReadyforRead = true
+                TagDataLogger.log(message: "Save completed ")
                 completion(.success("Success"))
             } catch {
                 completion(.failure(error))
@@ -301,6 +305,7 @@ public class TagDataManager: NSObject {
             
             //delete the existing record
             context.delete(existingRecord!);
+            TagDataLogger.log(message: "Delete completed ")
             
             // Insert a new record for the entry
             self.insertRecord(tagInputArray: [newName],  completion: { (result: Result<Any>) in
@@ -346,6 +351,7 @@ public class TagDataManager: NSObject {
                 // try saving contect
                 try context.save()
                 self.isDataReadyforRead = true
+                 TagDataLogger.log(message: "Save completed ")
                 completion(.success("Success"))
             } catch {
                 completion(.failure(error))

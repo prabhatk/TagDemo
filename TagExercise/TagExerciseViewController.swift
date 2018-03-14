@@ -33,16 +33,7 @@ class TagExerciseViewController: UIViewController {
     
     
     @IBAction func clearButtonAction(_ sender: Any) {
-        let manager = TagDataManager.sharedInstance
-        manager.clearData(completion: { (result: Result<Any>) in
-            switch result {
-            case .success( _):
-                NSLog("DB data cleared success")
-            case .failure(let error):
-                NSLog("DB data Failed to clear with error \(error)")
-            }
-            
-        })
+        self.clearDatabase();
     } 
     
     func processInputfromTextView() {
@@ -76,6 +67,19 @@ class TagExerciseViewController: UIViewController {
             case .failure(let error):
                 NSLog("DB data insert, Failed with error \(error)")
             }
+        })
+    }
+    
+    func clearDatabase() {
+        let manager = TagDataManager.sharedInstance
+        manager.clearData(completion: { (result: Result<Any>) in
+            switch result {
+            case .success( _):
+                NSLog("DB data cleared success")
+            case .failure(let error):
+                NSLog("DB data Failed to clear with error \(error)")
+            }
+            
         })
     }
 }
