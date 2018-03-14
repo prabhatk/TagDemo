@@ -136,6 +136,10 @@ public class TagDataManager: NSObject {
                 // Create a fetchrequest for TagData
                 let fetchRequest: NSFetchRequest<TagMetaData> = TagMetaData.fetchRequest()
                 
+                // Set the sort descriptor for the count attribute
+                let sortDescriptor = NSSortDescriptor(key: "count", ascending: false)
+                fetchRequest.sortDescriptors = [sortDescriptor]
+                
                 // indicates whether the objects resulting from a fetch request are faults
                 fetchRequest.returnsObjectsAsFaults = false
                 
@@ -276,6 +280,7 @@ public class TagDataManager: NSObject {
         }
     }
     
+    // Key Value observer for aync fetch progress 
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "completedUnitCount" {
             if let recordFetched = change?[.newKey] {
